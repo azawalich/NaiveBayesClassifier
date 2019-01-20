@@ -1,20 +1,15 @@
-##' Multinomial naive bayes classifier for bag of words representation.
-##'
-##' @name multinomialNaiveBayes
-
-library(ramify)
-
-#'@title multinomialNaiveBayes
-#'@description
-#'Multinomial naive bayes classifier implementation. This function creates an instance of multinomialNaiveBayes
-#'class and calculates apriori class probabilities as well as conditional probabilities. Uses Laplace smoothing
-#'to ensure, that each conditional probability is greater than 0.
-#'
-#' @param formula Describes the name of the column, which will be used as a label.
-#' @param data Dataframe that contains training data.
-#' @return An instance of multinomialNaiveBayes class trained on the given data.
-#' @export
 multinomialNaiveBayes <- function(formula, data) {
+  #' @title multinomialNaiveBayes
+  #' @description Multinomial naive bayes classifier implementation. This function creates an instance of multinomialNaiveBayes
+  #' class and calculates apriori class probabilities as well as conditional probabilities. Uses Laplace smoothing
+  #' to ensure, that each conditional probability is greater than 0.
+  #' @param formula Describes the name of the column, which will be used as a label.
+  #' @param data Dataframe that contains training data.
+  #' @return An instance of multinomialNaiveBayes class trained on the given data.
+  #' @export multinomialNaiveBayes
+  #' @import ramify
+  #' @import stats
+
   stopifnot(inherits(formula, "formula"))
   stopifnot(is.data.frame(data))
   
@@ -41,6 +36,8 @@ multinomialNaiveBayes <- function(formula, data) {
   rownames(classProbsMat) <- sort(unique(Y))
   conditionalProbs <- as.data.frame(classProbsMat)
 
+  #TODO (tbochenski): nie chcesz tego wrzucić w zmienną? cieżko się to czyta (azawalich)
+  
   return(
     structure(
       list(
@@ -53,14 +50,15 @@ multinomialNaiveBayes <- function(formula, data) {
   )
 }
 
-#'@title print.multinomialNaiveBayes
-#'@description
-#'Prints an instance of multinomialNaiveBayes class. This includes printing apriori class probabilities
-#'as well as printing conditional probabilities.
-#'
-#' @param object An instance of multinomialNaiveBayes class to be printed.
-#' @export
+
 print.multinomialNaiveBayes <- function(x, ...) {
+  #' @title print.multinomialNaiveBayes
+  #' @description Prints an instance of multinomialNaiveBayes class. This includes printing apriori class probabilities
+  #' as well as printing conditional probabilities.
+  #' @param x An instance of multinomialNaiveBayes class to be printed.
+  #' @param ... other arguments passed to methods
+  #' @export print.multinomialNaiveBayes
+
   cat("\nMultinomial Naive Bayes for bag of words classification\n")
   cat("\nA-priori probabilities:\n")
   print(x$aprioriProbs)
@@ -68,17 +66,18 @@ print.multinomialNaiveBayes <- function(x, ...) {
   print(x$conditionalProbs)
   print(nrow(x$conditionalProbs))
   print(ncol(x$conditionalProbs))
+  
 }
 
-#'@title predict.multinomialNaiveBayes
-#'@description
-#'Predicts labels for the given data using previously trained classifier.
-#'
-#' @param object An instance of multinomialNaiveBayes class.
-#' @param data Dataframe that contains data to be classified.
-#' @return Vector of labels for the given data.
-#' @export
+
 predict.multinomialNaiveBayes <- function(object, data) {
+  #' @title predict.multinomialNaiveBayes
+  #' @description Predicts labels for the given data using previously trained classifier.
+  #' @param object An instance of multinomialNaiveBayes class.
+  #' @param data Dataframe that contains data to be classified.
+  #' @return Vector of labels for the given data.
+  #' @export predict.multinomialNaiveBayes
+
   stopifnot(is.data.frame(data))
   
   aprioriProbsMat <- matrix(data = object$aprioriProbs, nrow = nrow(data),

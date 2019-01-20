@@ -7,7 +7,9 @@
 \method{print}{multinomialNaiveBayes}(x, ...)
 }
 \arguments{
-\item{object}{An instance of multinomialNaiveBayes class to be printed.}
+\item{x}{An instance of multinomialNaiveBayes class to be printed.}
+
+\item{...}{other arguments passed to methods}
 }
 \description{
 Prints an instance of multinomialNaiveBayes class. This includes printing apriori class probabilities

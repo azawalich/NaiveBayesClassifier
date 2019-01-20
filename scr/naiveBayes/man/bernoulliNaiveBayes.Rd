@@ -2,7 +2,7 @@
 % Please edit documentation in R/bernoulliNaiveBayes.R
 \name{bernoulliNaiveBayes}
 \alias{bernoulliNaiveBayes}
-\title{Bernoulli naive bayes classifier for bag of words representation.}
+\title{Bernoulli naive bayes classifier implementation.}
 \usage{
 bernoulliNaiveBayes(formula, data)
 }
@@ -15,7 +15,7 @@ bernoulliNaiveBayes(formula, data)
 An instance of bernoulliNaiveBayes class trained on the given data.
 }
 \description{
-Bernoulli naive bayes classifier implementation. This function creates an instance of bernoulliNaiveBayes
+This function creates an instance of bernoulliNaiveBayes
 class and calculates apriori class probabilities as well as conditional probabilities. Uses Laplace smoothing
 to ensure, that each conditional probability is greater than 0.
 }

@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{object}{An instance of bernoulliNaiveBayes class to be printed.}
+
+\item{...}{other arguments passed to methods}
 }
 \description{
 Prints an instance of bernoulliNaiveBayes class. This includes printing apriori class probabilities

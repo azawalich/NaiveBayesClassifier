@@ -1,20 +1,15 @@
-##' Bernoulli naive bayes classifier for bag of words representation.
-##'
-##' @name bernoulliNaiveBayes
-
-library(ramify)
-
-#'@title bernoulliNaiveBayes
-#'@description
-#'Bernoulli naive bayes classifier implementation. This function creates an instance of bernoulliNaiveBayes
-#'class and calculates apriori class probabilities as well as conditional probabilities. Uses Laplace smoothing
-#'to ensure, that each conditional probability is greater than 0.
-#'
-#' @param formula Describes the name of the column, which will be used as a label.
-#' @param data Dataframe that contains training data.
-#' @return An instance of bernoulliNaiveBayes class trained on the given data.
-#' @export
 bernoulliNaiveBayes <- function(formula, data) {
+  #' @title Bernoulli naive bayes classifier implementation.
+  #' @description This function creates an instance of bernoulliNaiveBayes
+  #' class and calculates apriori class probabilities as well as conditional probabilities. Uses Laplace smoothing
+  #' to ensure, that each conditional probability is greater than 0.
+  #' @param formula Describes the name of the column, which will be used as a label.
+  #' @param data Dataframe that contains training data.
+  #' @return An instance of bernoulliNaiveBayes class trained on the given data.
+  #' @export bernoulliNaiveBayes
+  #' @import ramify
+  #' @import stats
+
   stopifnot(inherits(formula, "formula"))
   stopifnot(is.data.frame(data))
   
@@ -37,6 +32,7 @@ bernoulliNaiveBayes <- function(formula, data) {
   })
   names(conditionalProbs) <- names(X)
   
+  #TODO (tbochenski): nie chcesz tego wrzucić w zmienną? cieżko się to czyta (azawalich)
   return(
     structure(
       list(
@@ -49,14 +45,14 @@ bernoulliNaiveBayes <- function(formula, data) {
   )
 }
 
-#'@title print.bernoulliNaiveBayes
-#'@description
-#'Prints an instance of bernoulliNaiveBayes class. This includes printing apriori class probabilities
-#'as well as printing conditional probabilities.
-#'
-#' @param object An instance of bernoulliNaiveBayes class to be printed.
-#' @export
 print.bernoulliNaiveBayes <- function(object, ...) {
+  #' @title print.bernoulliNaiveBayes
+  #' @description Prints an instance of bernoulliNaiveBayes class. This includes printing apriori class probabilities
+  #' as well as printing conditional probabilities.
+  #' @param object An instance of bernoulliNaiveBayes class to be printed.
+  #' @param ... other arguments passed to methods
+  #' @export print.bernoulliNaiveBayes
+
   cat("\nBernoulli Naive Bayes for bag of words classification\n")
   cat("\nA-priori probabilities:\n")
   print(object$aprioriProbs)
@@ -67,15 +63,14 @@ print.bernoulliNaiveBayes <- function(object, ...) {
   }
 }
 
-#'@title predict.bernoulliNaiveBayes
-#'@description
-#'Predicts labels for the given data using previously trained classifier.
-#'
-#' @param object An instance of bernoulliNaiveBayes class.
-#' @param data Dataframe that contains data to be classified.
-#' @return Vector of labels for the given data.
-#' @export
 predict.bernoulliNaiveBayes <- function(object, data) {
+  #' @title predict.bernoulliNaiveBayes
+  #' @description Predicts labels for the given data using previously trained classifier.
+  #' @param object An instance of bernoulliNaiveBayes class.
+  #' @param data Dataframe that contains data to be classified.
+  #' @return Vector of labels for the given data.
+  #' @export predict.bernoulliNaiveBayes
+
   stopifnot(is.data.frame(data))
 
   aprioriProbsMat <- matrix(data = object$aprioriProbs, nrow = nrow(data),

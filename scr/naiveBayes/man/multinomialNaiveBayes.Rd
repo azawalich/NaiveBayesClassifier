@@ -2,7 +2,7 @@
 % Please edit documentation in R/multinomialNaiveBayes.R
 \name{multinomialNaiveBayes}
 \alias{multinomialNaiveBayes}
-\title{Multinomial naive bayes classifier for bag of words representation.}
+\title{multinomialNaiveBayes}
 \usage{
 multinomialNaiveBayes(formula, data)
 }

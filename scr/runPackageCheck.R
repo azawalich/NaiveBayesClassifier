@@ -1,5 +1,10 @@
 setwd('scr/naiveBayes/')
 
+# ladujemy do pamieci najnowsza wersje paczki, coby potestowac 
+devtools::load_all()
+
+# jak dziala to jedziemy z dolu
+
 #renderujemy pliki pomocy
 devtools::document()
 
@@ -10,9 +15,6 @@ devtools::check(cran = T, document = F, args = "--no-examples")
 # install.packages('pkgdown')
 # library(pkgdown)
 pkgdown::build_site(examples = F)
-
-# ladujemy do pamieci najnowsza wersje paczki, coby potestowac 
-devtools::load_all()
 
 # jak wszystko dziala, to instalujemy paczke w naszym folderze R-owym,
 # potem powinnismy wyczyscic srodowisko i zobaczyc czy dziala tak jak z load_all

@@ -16,7 +16,7 @@ main <- function() {
 
   cat("e1071 naive bayes:\n")
   startTime <- Sys.time()
-  naiveBayesModel=naiveBayes(Y ~., data=bagOfWords, laplace = 1)
+  naiveBayesModel=e1071::naiveBayes(Y ~., data=bagOfWords, laplace = 1)
   NBPredictions=predict(naiveBayesModel,bagOfWords)
   endTime <- Sys.time()
   cat(paste("Accuracy:", accuracyScore(NBPredictions, bagOfWords$Y), "\n"))
